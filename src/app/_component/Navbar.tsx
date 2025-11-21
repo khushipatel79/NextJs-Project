@@ -1,8 +1,9 @@
 import Link from "next/link"
 import LogoutButton from "./LogoutButton";
+import { getSession } from "../_lib/session";
 
-const NavbarPage = () => {
-    const session = false;
+const NavbarPage = async() => {
+    const session =await getSession();
 
     return (
         <>
@@ -13,10 +14,7 @@ const NavbarPage = () => {
                         {session ? (
                             <>
                                 <Link href={"/contact"}>
-                                    Contact
-                                </Link>
-                                <Link href={"/image"}>
-                                    Image
+                                    contact
                                 </Link>
                                 <Link href={"/server"}>
                                     server

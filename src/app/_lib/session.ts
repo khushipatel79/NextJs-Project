@@ -3,12 +3,12 @@ import { cookies } from "next/headers";
 
 //set session cookie
 export const setSession = async(user : UserType) =>{
-   (await cookies()).set("session" , JSON.stringify(user)),{
+   (await cookies()).set("session" , JSON.stringify(user),{
        httpOnly:true,
        secure: process.env.NODE_ENV === "production",
        maxAge:60 * 60 * 24,
        path:"/"
-   }
+   })
 }
 
 //get session cookie
