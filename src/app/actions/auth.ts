@@ -13,7 +13,6 @@ export const loginAction = async (formData: FormData) => {
         const email = formData.get("email");
         const password = formData.get("password");
 
-        // 1️⃣ Check email exists
         const response = await axios.get(`${API_URL}/users?email=${email}`);
         const user = response.data[0];
 
@@ -21,12 +20,10 @@ export const loginAction = async (formData: FormData) => {
             return { success: false, message: "User not found. Please register first." };
         }
 
-        // 2️⃣ Check password
         if (user.password !== password) {
             return { success: false, message: "Invalid Password!" };
         }
 
-        // 3️⃣ If login success, store session
         await setSession({
             id: user.id,
             name: user.name,

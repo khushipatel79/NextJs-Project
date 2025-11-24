@@ -10,7 +10,20 @@ const ContactNewPage = () => {
   const { handleSubmit, register, reset } = useForm<ContactType>();
 
   const onSubmit = async (data: ContactType) => {
-    await axios.post("http://localhost:3001/contacts", data);
+    const sessionRes = await axios.get("/api/session");
+    const session = sessionRes.data;
+
+    if (!session || !session.id) {
+      alert("Please login first");
+      return;
+    }
+
+    const newContact = {
+      ...data,
+      userId: session.id,
+    };
+
+    await axios.post("http://localhost:3001/contacts", newContact);
     reset();
     router.push("/contact");
   };

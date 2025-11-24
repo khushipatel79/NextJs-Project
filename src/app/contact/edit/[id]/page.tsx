@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 const ContactEditPage: React.FC = () => {
   const params = useParams();
-  const id = params.id as string; 
+  const id = params.id as string;
   const router = useRouter();
 
   const { handleSubmit, register, setValue } = useForm<ContactType>();

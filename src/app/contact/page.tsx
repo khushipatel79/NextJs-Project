@@ -7,11 +7,28 @@ import { ContactType } from "@/app/_types/contact";
 
 const ContactPage = () => {
   const [data, setData] = useState<ContactType[]>([]);
+  const [userId, setUserId] = useState<number | null>(null);
 
   const getData = async () => {
-    const result = await axios.get<ContactType[]>("http://localhost:3001/contacts");
+    const sessionRes = await axios.get("/api/session");
+    console.log(sessionRes);
+
+    const session = sessionRes.data;
+
+    if (!session || !session.id) {
+      setData([]);
+      return;
+    }
+
+    setUserId(Number(session.id));
+
+    const result = await axios.get<ContactType[]>(
+      `http://localhost:3001/contacts?userId=${session.id}`
+    );
+
     setData(result.data);
   };
+
 
   useEffect(() => {
     getData();

@@ -1,22 +1,30 @@
 {
   "contacts": [
     {
-      "name": "harsh",
-      "email": "harsh@gmail.com",
-      "id": "5f21"
+      "id": "c832",
+      "name": "khushi",
+      "email": "patelkhushi7041@gmail.com",
+      "userId": "69f2"
     },
     {
-      "id": "bf82",
-      "name": "manubhai",
-      "email": "mrpatel.patel@gmail.com"
+      "id": "c6dc",
+      "name": "harsh",
+      "email": "harsh@gmail.com",
+      "userId": "69f2"
     }
   ],
   "users": [
     {
-      "id": "e213",
+      "id": "39eb",
       "name": "khushi",
-      "email": "k@gmail.com",
+      "email": "patelkhushi7041@gmail.com",
       "password": "khushi"
+    },
+    {
+      "id": "69f2",
+      "name": "jaimini",
+      "email": "jaimini@gmail.com",
+      "password": "jaimini"
     }
   ]
 }

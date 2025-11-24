@@ -10,7 +10,7 @@ const LoginForm = () => {
     const result = await loginAction(formData);
 
     if (result?.success === false) {
-      setServerMsg(result.message); // "Invalid Password!"
+      setServerMsg(result.message); 
     }
   };
 

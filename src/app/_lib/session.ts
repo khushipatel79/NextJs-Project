@@ -12,7 +12,6 @@ export const setSession = async(user : UserType) =>{
 }
 
 //get session cookie
-
 export const getSession = async() : Promise<UserType | null> =>{
    const session =  (await cookies()).get("session")?.value;
    if (!session) return null;
