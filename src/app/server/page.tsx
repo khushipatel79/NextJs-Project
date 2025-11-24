@@ -1,7 +1,14 @@
 import axios from "axios"
+import { getSession } from "../_lib/session";
 
 const Serverpage = async () => {
-  const result = await axios.get("http://localhost:3001/contacts")
+  const session = await getSession();
+
+  if (!session || !session.id) {
+    return <h1>Please login</h1>;
+  }
+
+  const result = await axios.get(`http://localhost:3001/contacts?userId=${session.id}`)
   const data = result.data;
   return (
     <>
