@@ -9,6 +9,8 @@ const ContactPage = () => {
   const [data, setData] = useState<ContactType[]>([]);
   const [userId, setUserId] = useState<number | null>(null);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const getData = async () => {
     const sessionRes = await axios.get("/api/session");
     console.log(sessionRes);
@@ -34,6 +36,13 @@ const ContactPage = () => {
     getData();
   }, []);
 
+  const displayedData = data.filter(contact =>
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
+
   const handleDelete = async (id: number) => {
     await axios.delete(`http://localhost:3001/contacts/${id}`);
     getData();
@@ -49,10 +58,21 @@ const ContactPage = () => {
           </button>
         </Link>
       </div>
+      <div>
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Search by name or email..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="border p-2 rounded w-full"
+          />
+        </div>
+      </div>
 
       <div className="bg-gray-100 p-4 rounded">
-        {data.length >= 1 ? (
-          data.map((item) => (
+        {displayedData.length >= 1 ? (
+          displayedData.map((item) => (
             <div
               key={item.id}
               className="flex items-center p-3 bg-white mb-3 justify-between"
